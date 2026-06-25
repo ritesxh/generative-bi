@@ -118,10 +118,10 @@ def build_graph() -> StateGraph:
     return graph
 
 
-def compile_graph():
-    from langgraph.checkpoint.postgres import PostgresSaver
-    import os
+def compile_graph(checkpointer=None):
+    """Compile the graph with an optional LangGraph checkpointer.
 
-    pg_url = os.environ.get("POSTGRES_URL", "postgresql://localhost/generativebi")
-    checkpointer = PostgresSaver.from_conn_string(pg_url)
+    Pass a checkpointer instance (e.g. PostgresSaver, MemorySaver) or leave
+    None to compile without persistence (useful for testing).
+    """
     return build_graph().compile(checkpointer=checkpointer)

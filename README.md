@@ -2,7 +2,6 @@
 
 > A full-stack AI data platform enabling **natural language querying** over curated ClickHouse datasets via AWS Bedrock. A LangChain + LangGraph agent translates plain English questions into SQL, executes them against ClickHouse, and returns chart-ready data products — with Apache Spark driving the ingestion pipelines.
 
-[![CI](https://github.com/ritesxh/generative-bi/actions/workflows/ci.yml/badge.svg)](https://github.com/ritesxh/generative-bi/actions)
 [![Python](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -38,7 +37,7 @@
 │        → [executor] → [formatter] → [chart_builder]               │
 │                                                                     │
 │  LangGraph checkpointing in PostgreSQL (multi-turn memory)         │
-│  Entra ID JWT authentication                                        │
+│  JWT / OAuth2 bearer token authentication                          │
 └─────────────────────────┬─────────────────────────────────────────┘
                           │
                           ▼
@@ -59,7 +58,7 @@
 | **Multi-turn memory** | LangGraph checkpointing in PostgreSQL — remembers prior questions |
 | **Spark ingestion** | Parquet-backed pipelines write curated Gold data to ClickHouse |
 | **Schema curation** | Schema registry with column descriptions, lineage, example values |
-| **JWT auth** | Microsoft Entra ID (Azure AD) JWT authentication |
+| **JWT auth** | OAuth2 / JWT bearer token authentication |
 | **Chart delivery** | Agent returns Vega-Lite chart spec for React frontend to render |
 
 ---
@@ -73,7 +72,7 @@
 | Analytics DB | ClickHouse |
 | State / schema | PostgreSQL |
 | API | FastAPI |
-| Auth | Microsoft Entra ID (JWT) |
+| Auth | OAuth2 + JWT |
 | Frontend | React |
 | Containerisation | Docker, Docker Compose |
 | CI/CD | GitHub Actions |
